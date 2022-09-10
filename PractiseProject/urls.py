@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path ,include 
+from .views import AdminPanal
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('curd/',include('curd.urls')),
+    path('relation/',include('modelrelation.urls')),
+    # path('registration/',AdminPanal),
     
 ]
