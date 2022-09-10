@@ -1,3 +1,4 @@
+from re import T
 from django.db import models
 
 # Create your models here.
@@ -17,3 +18,6 @@ class Page(models.Model):
 
     def __str__(self):
         return str(self.user)
+class Like(Page):
+    connect=models.OneToOneField(Page, on_delete=models.CASCADE,primary_key=True,parent_link=True)
+    count=models.IntegerField()
