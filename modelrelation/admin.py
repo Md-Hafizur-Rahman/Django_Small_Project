@@ -2,7 +2,7 @@ from re import A
 from django.contrib import admin
 # Register your models here.
 
-from modelrelation.models import Like, User, Page
+from modelrelation.models import Like, Post, User, Page
 from django.contrib import messages
 
 admin.site.site_header = "PageAdminPanel"
@@ -35,5 +35,10 @@ class PageAdmin(admin.ModelAdmin):
 @admin.register(Like)
 class LikeAdmin(admin.ModelAdmin):
     list_display = ("connect","page_name","page_cat","page_publish_date","count")
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ("id","user","post_title","post_cat","post_publish_date")
+    
     
     
