@@ -27,3 +27,13 @@ class Post(models.Model):
     post_cat=models.CharField(max_length=70)
     post_publish_date=models.DateField(auto_now_add=True)
     
+class Nasheed(models.Model):
+    user=models.ManyToManyField(User)
+    nasheed_name=models.CharField(max_length=70)
+    nasheed_duration=models.DurationField(null=True)
+    
+    def writen_by(self):
+        p= ",".join(str(p) for p in self.user.all()) # to showing this user value in the admin.py file and showing in the tabale
+        # print(p)
+        return p
+        

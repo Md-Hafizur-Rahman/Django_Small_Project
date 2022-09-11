@@ -2,7 +2,7 @@ from re import A
 from django.contrib import admin
 # Register your models here.
 
-from modelrelation.models import Like, Post, User, Page
+from modelrelation.models import Like, Post, User, Page,Nasheed
 from django.contrib import messages
 
 admin.site.site_header = "PageAdminPanel"
@@ -39,6 +39,6 @@ class LikeAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ("id","user","post_title","post_cat","post_publish_date")
-    
-    
-    
+@admin.register(Nasheed)
+class NasheedAdmin(admin.ModelAdmin):
+    list_display = ("nasheed_name","nasheed_duration","writen_by")
