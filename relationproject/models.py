@@ -30,7 +30,7 @@ class Post(models.Model):
 class Nasheed(models.Model):
     user=models.ManyToManyField(User)
     nasheed_name=models.CharField(max_length=70)
-    nasheed_duration=models.DurationField(null=True)
+    nasheed_duration=models.IntegerField(null=True)
     
     def writen_by(self):
         p= ",".join(str(p) for p in self.user.all()) # to showing this user value in the admin.py file and showing in the tabale

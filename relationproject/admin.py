@@ -2,7 +2,7 @@ from re import A
 from django.contrib import admin
 # Register your models here.
 
-from modelrelation.models import Like, Post, User, Page,Nasheed
+from relationproject.models import Like, Post, User, Page,Nasheed
 from django.contrib import messages
 
 admin.site.site_header = "PageAdminPanel"

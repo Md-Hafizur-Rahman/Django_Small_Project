@@ -19,7 +19,7 @@ from .views import AdminPanal
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('curd/',include('curd.urls')),
-    path('relation/',include('modelrelation.urls')),
+    path('relationproject/',include('relationproject.urls')),
     # path('registration/',AdminPanal),
     
 ]
