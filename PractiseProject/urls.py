@@ -20,6 +20,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('curd/',include('curd.urls')),
     path('relationproject/',include('relationproject.urls')),
+    path('djangosignals/',include('djangosignals.urls')),
     # path('registration/',AdminPanal),
     
 ]

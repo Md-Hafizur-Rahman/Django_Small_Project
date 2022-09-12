@@ -1,3 +1,4 @@
+from urllib import request
 from django.contrib.auth.signals import user_logged_in,user_logged_out,user_login_failed
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_init,pre_save,pre_delete,pre_migrate,post_init,post_save,post_delete,post_migrate
@@ -74,4 +75,26 @@ def at_ending_delete(sender,instance,**kwargs):
     print('deleted')
     print('sender:',sender)
     print('Instance:',instance)
+    print(f'kwargs:{kwargs}')
+    
+@receiver(request_started)
+def at_brginning_delete(sender,environ,**kwargs):
+    print('...............')
+    print('request_started signals')
+    print('sender:',sender)
+    print('Environ:',environ)
+    print(f'kwargs:{kwargs}')
+    
+@receiver(request_finished)
+def at_brginning_delete(sender,**kwargs):
+    print('...............')
+    print('request_finished signals')
+    print('sender:',sender)
+    print(f'kwargs:{kwargs}')
+@receiver(got_request_exception)
+def at_brginning_delete(sender,request,**kwargs):
+    print('...............')
+    print('got request exception')
+    print('sender:',sender)
+    print('request:',request)
     print(f'kwargs:{kwargs}')
