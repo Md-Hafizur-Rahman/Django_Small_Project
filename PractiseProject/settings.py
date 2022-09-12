@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "curd",
     "relationproject",
+    "djangosignals"
 ]
 
 MIDDLEWARE = [
