@@ -3,6 +3,8 @@ from django.contrib.auth.signals import user_logged_in,user_logged_out,user_logi
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_init,pre_save,pre_delete,pre_migrate,post_init,post_save,post_delete,post_migrate
 from django.core.signals import request_started,request_finished,got_request_exception
+from django.db.backends.signals import connection_created
+
 from django.dispatch import receiver
 
 @receiver(user_logged_in,sender=User)
@@ -122,4 +124,12 @@ def before_insatall_app(sender,app_config,verbosity,interactive,using,plan,apps,
     print('Using:',using)
     print('Plan:',plan)
     print('apps:',apps)
+    print(f'kwargs:{kwargs}')
+    
+@receiver(connection_created)
+def connection_signal(sender,connection,**kwargs):
+    print('...............')
+    print('connection created signals')
+    print('sender:',sender)
+    print('Environ:',connection)
     print(f'kwargs:{kwargs}')
