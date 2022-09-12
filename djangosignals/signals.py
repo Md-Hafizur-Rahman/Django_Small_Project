@@ -1,5 +1,7 @@
 from django.contrib.auth.signals import user_logged_in,user_logged_out,user_login_failed
 from django.contrib.auth.models import User
+from django.db.models.signals import pre_init,pre_save,pre_delete,pre_migrate,post_init,post_save,post_delete,post_migrate
+from django.core.signals import request_started,request_finished,got_request_exception
 from django.dispatch import receiver
 
 @receiver(user_logged_in,sender=User)
@@ -11,6 +13,7 @@ def login_success(sender,request,user,**kwargs):
     print('user',user)
     print('user_passwd: ',user.password)
     print(f'kwargs:{kwargs}')
+# user_logged_in.connect(login_success,sender=User)
     
 @receiver(user_logged_out,sender=User)
 def login_success(sender,request,user,**kwargs):
@@ -19,7 +22,7 @@ def login_success(sender,request,user,**kwargs):
     print('sender',sender)
     print('request',request)
     print('user',user)
-    print('user_passwd: ',user.password)
+    print('user_passwd:',user.password)
     print(f'kwargs:{kwargs}')
 
 @receiver(user_login_failed)
@@ -30,5 +33,45 @@ def login_success(sender,request,credentials,**kwargs):
     print('request',request)
     print('credentials:',credentials)
     print(f'kwargs:{kwargs}')
-
-# user_logged_in.connect(login_success,sender=User
+@receiver(pre_save,sender=User)
+def at_brginning_save(sender,instance,**kwargs):
+    print('...............')
+    print('Pre_save signals')
+    print('sender:',sender)
+    print('Instance:',instance)
+    print(f'kwargs:{kwargs}')
+    
+@receiver(post_save,sender=User)
+def at_ending_save(sender,instance,created,**kwargs):
+    if created:
+        print('...............')
+        print('Post_save created with new record signals')
+        print('sender:',sender)
+        print('Instance:',instance)
+        print('Created:',created)
+        print(f'kwargs:{kwargs}')
+    else:
+        print('...............')
+        print('Post_save created with update record signals')
+        print('update')
+        print('sender:',sender)
+        print('Instance:',instance)
+        print('Created:',created)
+        print(f'kwargs:{kwargs}')
+        
+@receiver(pre_delete,sender=User)
+def at_brginning_delete(sender,instance,**kwargs):
+    print('...............')
+    print('Pre_delete signals')
+    print('sender:',sender)
+    print('Instance:',instance)
+    print(f'kwargs:{kwargs}')
+    
+@receiver(post_delete,sender=User)
+def at_ending_delete(sender,instance,**kwargs):
+    print('...............')
+    print('Post_delete  signals')
+    print('deleted')
+    print('sender:',sender)
+    print('Instance:',instance)
+    print(f'kwargs:{kwargs}')
